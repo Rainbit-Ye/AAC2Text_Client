@@ -4,6 +4,7 @@ using DataTable;
 using ImageCache;
 using Manager;
 using UI.AACSelect.AllSelectPanel;
+using UI.AACSelect.UIAllSelectPanel;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

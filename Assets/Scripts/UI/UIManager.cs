@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using UI.AACSelect;
+using UI.ContentTips;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -18,7 +20,8 @@ namespace UI
 
         public UIManager()
         {
-            
+            _UIElements.Add(typeof(AACSelectPanel), new UIElement() { Resources = "UI/UIAACSelectPanel", Cache = true });
+            _UIElements.Add(typeof(UIContentTips), new UIElement() { Resources = "UI/UIContentTips", Cache = true });
         }
         ~UIManager(){}
 
@@ -39,7 +42,7 @@ namespace UI
                 }
                 else
                 {
-                    Object prefab = Resources.Load(element.Resources, type);
+                    Object prefab = Resources.Load(element.Resources);
                     if (prefab == null)
                     {
                         return default(T);
@@ -66,6 +69,42 @@ namespace UI
                     element.prefabs = null;
                 }
             }
+        }
+        
+        public T Get<T>() where T : Component
+        {
+            Type type = typeof(T);
+            if (_UIElements.ContainsKey(type))
+            {
+                UIElement info = _UIElements[type];
+                if (info.prefabs != null && info.prefabs.activeInHierarchy)
+                {
+                    return info.prefabs.GetComponent<T>();
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 获取当前已存在的UI实例（即使未激活也返回）
+        /// </summary>
+        /// <typeparam name="T">UI类型</typeparam>
+        /// <param name="includeInactive">是否包含未激活的实例</param>
+        /// <returns>UI实例，如果不存在返回null</returns>
+        public T Get<T>(bool includeInactive) where T : Component
+        {
+            Type type = typeof(T);
+            if (_UIElements.ContainsKey(type))
+            {
+                UIElement info = _UIElements[type];
+                if (info.prefabs != null && (includeInactive || info.prefabs.activeInHierarchy))
+                {
+                    return info.prefabs.GetComponent<T>();
+                }
+            }
+
+            return null;
         }
     }
 }

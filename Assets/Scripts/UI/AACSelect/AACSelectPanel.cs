@@ -1,18 +1,27 @@
-using System;
-using UI.AACSelect;
-using UI.AACSelect.UIAllSelectPanel;
-using UnityEngine;
+using UI.AACSelect.UIPredictPanel;
 
-
-
-public class AACSelectPanel : MonoBehaviour
+namespace UI.AACSelect
 {
-    public AACIconSlot iconSlot;
-    public AllSelectPanel allSelectPanel;
-
-    private void Start()
+    public class AACSelectPanel : UIWindow
     {
-        iconSlot.owner = this;
-        allSelectPanel.owner = this;
+        public AACIconSlot iconSlot;
+        public UIAllSelectPanel.AllSelectPanel allSelectPanel;
+        public PredictPanel predictPanel;
+        private void Start()
+        {
+            iconSlot.owner = this;
+            allSelectPanel.owner = this;
+            predictPanel.owner = this;
+        }
+
+        /// <summary>
+        ///  true：打开全选 false：打开预测
+        /// </summary>
+        /// <param name="v"></param>
+        public void SwitchPanelType(bool v)
+        {
+            allSelectPanel.gameObject.SetActive(v);
+            predictPanel.gameObject.SetActive(!v);
+        }
     }
 }

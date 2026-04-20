@@ -1,13 +1,14 @@
 using Manager;
 using TMPro;
+using UI.AACSelect.AllSelectPanel;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.AACSelect.AllSelectPanel
+namespace UI.AACSelect.UIAllSelectPanel
 {
     public class CategoryPanel : MonoBehaviour
     {
-        public UIAllSelectPanel.AllSelectPanel owner;
+        public AllSelectPanel owner;
         public ImagePanel imagePanel;
         
         public TMP_Text categoryName;
@@ -38,6 +39,7 @@ namespace UI.AACSelect.AllSelectPanel
         private void ChangeImage()
         {
             Debug.Log("ChangeImage");
+            imagePanel.SetData();
         }
 
         private void ExpandAllImage()

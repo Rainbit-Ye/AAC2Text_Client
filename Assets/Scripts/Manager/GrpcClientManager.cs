@@ -2,10 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Google.Protobuf.Collections;
 using Grpc.Core;
 using Manager;
-using Unity.VisualScripting;
+using UI;
+using UI.ContentTips;
 using UnityEngine;
 
 public class GrpcClientManager : SingletonPersistentMono<GrpcClientManager>
@@ -53,7 +53,9 @@ public class GrpcClientManager : SingletonPersistentMono<GrpcClientManager>
             // 发送请求并等待响应
             var response = await _Client.ProcessAACMessageAsync(request);
             
-            Debug.Log(response.Csid + " " + response.Text);
+            Debug.Log(response.TextEmotion + " " + response.Text);
+            UIContentTips tips = UIManager.Ins.Show<UIContentTips>();
+            tips.SetData(response.Text);
         }
         catch (RpcException e)
         {

@@ -24,6 +24,7 @@ namespace UI.AACSelect
         {
             Debug.Log("SendAAC");
             _ = GrpcClientManager.Ins.SendDispersesIcon(_iconLabels);
+            _iconLabels.Clear();
             var images = transform.GetComponentsInChildren<AACImagePrefabs>(true);
             foreach (var imagePrefab in images)
             {
