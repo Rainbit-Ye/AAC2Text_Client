@@ -670,6 +670,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AllSelectPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 8212039597084317156, guid: 4b15f568101c33f4a957f7cf7a03a6a5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8260246678321545366, guid: 4b15f568101c33f4a957f7cf7a03a6a5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1483,8 +1487,9 @@ GameObject:
   - component: {fileID: 2128163120}
   - component: {fileID: 2128163122}
   - component: {fileID: 2128163121}
+  - component: {fileID: 2128163123}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: AACSelectPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1551,6 +1556,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128163119}
   m_CullTransparentMesh: 1
+--- !u!114 &2128163123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128163119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e71b0a85a344bb9dd203188da07192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iconSlot: {fileID: 0}
+  categoryPanels: []
 --- !u!1001 &3591041381858416399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1559,9 +1578,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2128163120}
     m_Modifications:
+    - target: {fileID: 1057826512674456358, guid: 5d1a433ca57586a4e96d54d65b35d445, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057826512674456358, guid: 5d1a433ca57586a4e96d54d65b35d445, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057826512674456358, guid: 5d1a433ca57586a4e96d54d65b35d445, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057826512674456358, guid: 5d1a433ca57586a4e96d54d65b35d445, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2196573914895603347, guid: 5d1a433ca57586a4e96d54d65b35d445, type: 3}
       propertyPath: m_Name
       value: SelectImagePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193442444641362664, guid: 5d1a433ca57586a4e96d54d65b35d445, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193442444641362664, guid: 5d1a433ca57586a4e96d54d65b35d445, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193442444641362664, guid: 5d1a433ca57586a4e96d54d65b35d445, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193442444641362664, guid: 5d1a433ca57586a4e96d54d65b35d445, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7961964576319416374, guid: 5d1a433ca57586a4e96d54d65b35d445, type: 3}
       propertyPath: m_Pivot.x

@@ -10,7 +10,7 @@ namespace Manager
     public class DataManager
     {
         private static Dictionary<string,IconLabelDataTable> ImageNameList = new Dictionary<string,IconLabelDataTable>();
-        private static Dictionary<string,List<IconLabelDataTable>> IconTypeList = new Dictionary<string,List<IconLabelDataTable>>();
+        private static Dictionary<ImageType,List<IconLabelDataTable>> IconTypeList = new Dictionary<ImageType,List<IconLabelDataTable>>();
         public static void InitDataTable()
         {
             InitImageList();
@@ -32,7 +32,7 @@ namespace Manager
                         foreach (var define in dataList)
                         {
                             string labelName = define.IconLabel;
-                            string category = define.Category;
+                            ImageType category = define.Category;
 
                             if(IconTypeList.ContainsKey(category))
                             {
@@ -64,7 +64,7 @@ namespace Manager
             imageNameList = ImageNameList;
         }
 
-        public static void GetIconListByType(string type, out List<IconLabelDataTable> iconList)
+        public static void GetIconListByType(ImageType type, out List<IconLabelDataTable> iconList)
         {
             if (IconTypeList.TryGetValue(type, out var list))
             {

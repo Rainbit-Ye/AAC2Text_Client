@@ -41,7 +41,7 @@ public class GrpcClientManager : SingletonPersistentMono<GrpcClientManager>
         OnConnectedServer(response);
     }
 
-    public async Task SendDispersesIcon(List<string> labels, float value)
+    public async Task SendDispersesIcon(List<string> labels)
     {
         try
         {
@@ -53,6 +53,7 @@ public class GrpcClientManager : SingletonPersistentMono<GrpcClientManager>
             // 发送请求并等待响应
             var response = await _Client.ProcessAACMessageAsync(request);
             
+            Debug.Log(response.Csid + " " + response.Text);
         }
         catch (RpcException e)
         {

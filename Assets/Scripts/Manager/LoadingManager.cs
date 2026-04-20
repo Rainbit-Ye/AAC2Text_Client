@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,14 @@ namespace Manager
 {
     public class LoadingManager : Singleton<LoadingManager>
     {
-        public void StartLoad()
+        public event Action OnLoadingComplete;
+        public async Task StartLoad()
         {
             DataManager.InitDataTable();
             DataManager.GetImageNameList(out var imageNameList);
-            _ = PreLoadImageFromServerBatch(imageNameList.Keys.ToList(), 200);
+            await PreLoadImageFromServerBatch(imageNameList.Keys.ToList(), 200);
+            OnLoadingComplete?.Invoke();
+            Debug.Log("加载完成");
         }
 
         private async Task PreLoadImageFromServerBatch(List<string> imageNameList, int batchSize)
@@ -51,8 +55,11 @@ namespace Manager
             {
                 byte[] imageBytes = res.ImageData[i].ToByteArray();
                     
-                Texture2D tex = new Texture2D(2, 2);
+                Texture2D tex = new Texture2D(2, 2,TextureFormat.RGBA32, false);
                 tex.LoadImage(imageBytes);
+                tex.wrapMode = TextureWrapMode.Clamp;
+                tex.filterMode = FilterMode.Bilinear;
+                tex.Apply(true);
                 ImageCacheFunctionLibrary.SaveImage(res.IconLabel[i], tex);
             }
         }
