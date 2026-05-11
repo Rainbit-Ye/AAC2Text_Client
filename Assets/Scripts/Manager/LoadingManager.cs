@@ -11,6 +11,7 @@ namespace Manager
     public class LoadingManager : Singleton<LoadingManager>
     {
         public event Action OnLoadingComplete;
+        public static bool IsLoading = false;
         public async Task StartLoad()
         {
             DataManager.InitDataTable();
@@ -18,6 +19,7 @@ namespace Manager
             await PreLoadImageFromServerBatch(imageNameList.Keys.ToList(), 200);
             OnLoadingComplete?.Invoke();
             Debug.Log("加载完成");
+            IsLoading = true;
         }
 
         private async Task PreLoadImageFromServerBatch(List<string> imageNameList, int batchSize)

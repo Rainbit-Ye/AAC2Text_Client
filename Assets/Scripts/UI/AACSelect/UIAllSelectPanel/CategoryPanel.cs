@@ -1,3 +1,4 @@
+using System;
 using Manager;
 using TMPro;
 using UI.AACSelect.AllSelectPanel;
@@ -6,19 +7,29 @@ using UnityEngine.UI;
 
 namespace UI.AACSelect.UIAllSelectPanel
 {
-    public class CategoryPanel : MonoBehaviour
+    public class CategoryPanel : CategoryPanelBase
     {
         public AllSelectPanel owner;
-        public ImagePanel imagePanel;
-        
-        public TMP_Text categoryName;
         public Button expandAllImage;
-        public Button changeImage;
+
         
-        public ImageType panelType;
+
         public void Start()
         {
-            LoadingManager.Ins.OnLoadingComplete += Init;
+            if (LoadingManager.IsLoading)
+            {
+                Init();
+            }
+            else
+            {
+                LoadingManager.Ins.OnLoadingComplete += Init; 
+            }
+
+        }
+
+        private void OnDestroy()
+        {
+            LoadingManager.Ins.OnLoadingComplete -= Init;
         }
 
         private void OnApplicationQuit()

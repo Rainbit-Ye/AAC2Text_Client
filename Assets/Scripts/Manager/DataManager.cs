@@ -75,5 +75,29 @@ namespace Manager
                 iconList = new List<IconLabelDataTable>();
             }
         }
+
+        public static void GetIconByName(string name, out IconLabelDataTable icon)
+        {
+            if (ImageNameList.TryGetValue(name, out var data))
+            {
+                icon = data;
+            }
+            else
+            {
+                icon = null;
+            }
+        }
+
+        public static void GetTypeByName(string name, out ImageType type)
+        {
+            if (ImageNameList.TryGetValue(name, out var data))
+            {
+                type = data.Category;
+            }
+            else
+            {
+                type = ImageType.None;
+            }
+        }
     }
 }

@@ -53,9 +53,7 @@ public class GrpcClientManager : SingletonPersistentMono<GrpcClientManager>
             // 发送请求并等待响应
             var response = await _Client.ProcessAACMessageAsync(request);
             
-            Debug.Log(response.TextEmotion + " " + response.Text);
-            UIContentTips tips = UIManager.Ins.Show<UIContentTips>();
-            tips.SetData(response.Text);
+            SystemManager.Ins.AnalysisMessage<AACDisperseIconToText>(response.Csid,response);
         }
         catch (RpcException e)
         {
@@ -71,15 +69,7 @@ public class GrpcClientManager : SingletonPersistentMono<GrpcClientManager>
             LoadingManager.Ins.StartLoad();
         }
     }
-
-    private void OnDispersesIcon(AACDisperseIconToText response)
-    {
-        if (response.Csid == CSID.AacDispersesIconToText)
-        {
-            SystemManager.Ins.AnalysisMessage(response.Csid);
-            // UI那边响应
-        }
-    }
+    
     
     void OnDestroy()
     {

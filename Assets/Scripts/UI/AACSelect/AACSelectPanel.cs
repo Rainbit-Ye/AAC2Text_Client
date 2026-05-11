@@ -22,6 +22,10 @@ namespace UI.AACSelect
         {
             allSelectPanel.gameObject.SetActive(v);
             predictPanel.gameObject.SetActive(!v);
+            if (predictPanel.predictIconPanel == null)
+            {
+                predictPanel.Init();
+            }
         }
     }
 }

@@ -34,7 +34,7 @@ public static partial class MessageReflection {
           "a1Jlc3BvbnNlEg8KB2Nvbm5lY3QYASABKAgSFwoGcmVzdWx0GAIgASgOMgcu",
           "UkVTVUxUEhAKCGVycm9ybXNnGAMgASgJIj8KDkFBQ1RleHRFbW90aW9uEhYK",
           "DmN1cnJlbnRFbW90aW9uGAEgASgJEhUKDUdsb2JhbEVtb3Rpb24YAiABKAki",
-          "KAoTQUFDUHJlZGljdEljb25MYWJlbBIRCglpY29uTGFiZWwYASABKAkqIQoG",
+          "KAoTQUFDUHJlZGljdEljb25MYWJlbBIRCglpY29uTGFiZWwYASADKAkqIQoG",
           "UkVTVUxUEgsKB1NVQ0NFU1MQABIKCgZGQUlMRUQQASqzAQoEQ1NJRBIbChdD",
           "U0lEX0NPTk5FQ1RfU1VDQ0VTU0ZVTBAAEhcKE0NTSURfQ09OTkVDVF9GQUlM",
           "RUQQARIgChxDU0lEX0FBQ19ESVNQRVJTRVNfSUNPTl9TRU5EEAISIwofQ1NJ",
@@ -1846,7 +1846,7 @@ public sealed partial class AACPredictIconLabel : pb::IMessage<AACPredictIconLab
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public AACPredictIconLabel(AACPredictIconLabel other) : this() {
-    iconLabel_ = other.iconLabel_;
+    iconLabel_ = other.iconLabel_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1858,14 +1858,13 @@ public sealed partial class AACPredictIconLabel : pb::IMessage<AACPredictIconLab
 
   /// <summary>Field number for the "iconLabel" field.</summary>
   public const int IconLabelFieldNumber = 1;
-  private string iconLabel_ = "";
+  private static readonly pb::FieldCodec<string> _repeated_iconLabel_codec
+      = pb::FieldCodec.ForString(10);
+  private readonly pbc::RepeatedField<string> iconLabel_ = new pbc::RepeatedField<string>();
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public string IconLabel {
+  public pbc::RepeatedField<string> IconLabel {
     get { return iconLabel_; }
-    set {
-      iconLabel_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1883,7 +1882,7 @@ public sealed partial class AACPredictIconLabel : pb::IMessage<AACPredictIconLab
     if (ReferenceEquals(other, this)) {
       return true;
     }
-    if (IconLabel != other.IconLabel) return false;
+    if(!iconLabel_.Equals(other.iconLabel_)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1891,7 +1890,7 @@ public sealed partial class AACPredictIconLabel : pb::IMessage<AACPredictIconLab
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
-    if (IconLabel.Length != 0) hash ^= IconLabel.GetHashCode();
+    hash ^= iconLabel_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1910,10 +1909,7 @@ public sealed partial class AACPredictIconLabel : pb::IMessage<AACPredictIconLab
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
-    if (IconLabel.Length != 0) {
-      output.WriteRawTag(10);
-      output.WriteString(IconLabel);
-    }
+    iconLabel_.WriteTo(output, _repeated_iconLabel_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1924,10 +1920,7 @@ public sealed partial class AACPredictIconLabel : pb::IMessage<AACPredictIconLab
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (IconLabel.Length != 0) {
-      output.WriteRawTag(10);
-      output.WriteString(IconLabel);
-    }
+    iconLabel_.WriteTo(ref output, _repeated_iconLabel_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1938,9 +1931,7 @@ public sealed partial class AACPredictIconLabel : pb::IMessage<AACPredictIconLab
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
-    if (IconLabel.Length != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeStringSize(IconLabel);
-    }
+    size += iconLabel_.CalculateSize(_repeated_iconLabel_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -1953,9 +1944,7 @@ public sealed partial class AACPredictIconLabel : pb::IMessage<AACPredictIconLab
     if (other == null) {
       return;
     }
-    if (other.IconLabel.Length != 0) {
-      IconLabel = other.IconLabel;
-    }
+    iconLabel_.Add(other.iconLabel_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -1976,7 +1965,7 @@ public sealed partial class AACPredictIconLabel : pb::IMessage<AACPredictIconLab
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
         case 10: {
-          IconLabel = input.ReadString();
+          iconLabel_.AddEntriesFrom(input, _repeated_iconLabel_codec);
           break;
         }
       }
@@ -1999,7 +1988,7 @@ public sealed partial class AACPredictIconLabel : pb::IMessage<AACPredictIconLab
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
         case 10: {
-          IconLabel = input.ReadString();
+          iconLabel_.AddEntriesFrom(ref input, _repeated_iconLabel_codec);
           break;
         }
       }

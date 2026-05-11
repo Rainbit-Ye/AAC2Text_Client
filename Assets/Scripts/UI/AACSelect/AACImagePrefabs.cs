@@ -2,7 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ImageCache;
+using UI.AACSelect;
 using UI.AACSelect.AllSelectPanel;
+using UI.AACSelect.UIAllSelectPanel;
+using UI.AACSelect.UIPredictPanel;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -31,7 +35,17 @@ public class AACImagePrefabs : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         if (canSelected)
         {
-            owner.owner.owner.owner.iconSlot.SetData(_imageName);
+            CategoryPanelBase categorybase = owner.owner;
+            if (categorybase.GetComponent(typeof(CategoryPanel)))
+            {
+                CategoryPanel categoryPanel = owner.owner.GetComponent<CategoryPanel>();
+                categoryPanel.owner.owner.iconSlot.SetData(_imageName);
+            }
+            else
+            {
+                PredictIconPanel predictPanel = owner.owner.GetComponent<PredictIconPanel>();
+                predictPanel.owner.owner.iconSlot.SetData(_imageName);
+            }
         }
     }
 

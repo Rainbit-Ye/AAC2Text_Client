@@ -20,7 +20,7 @@ namespace UI.AACSelect.AllSelectPanel
 {
     public class ImagePanel : MonoBehaviour
     {
-        public CategoryPanel owner;
+        public CategoryPanelBase owner;
         public List<AACImagePrefabs> selectedImages;
 
         public void SetData()
@@ -35,7 +35,22 @@ namespace UI.AACSelect.AllSelectPanel
                 selectedImages[i].SetData(icon.IconLabel);
                 selectedImages[i].owner = this;
             }
+        }
 
+        public void SetData(List<string> imageName)
+        {
+            for (int i = 0; i < imageName.Count; i++)
+            {
+                if (i < selectedImages.Count)
+                {
+                    selectedImages[i].SetData(imageName[i]);
+                    selectedImages[i].owner = this;
+                }
+                else
+                {
+                    Debug.LogWarning($"SetData 超出范围: {i}");
+                }
+            }
         }
     }
 }
